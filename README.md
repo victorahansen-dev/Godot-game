@@ -51,6 +51,8 @@ func play_animation(prefix: String, dir: Vector2) -> void: # prefix runs whateve
 
 **Here:**
 
+"@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D" is a variable created which gives access to the sprite animations
+
 in physics_process we call for the process_movement and process_animation function
 
 process_movement checks the speed of the player and determines if they're either walking or idle
