@@ -77,6 +77,6 @@ An example of this; if our player is on layer 2, but mask one. It will collide w
 
 Additionally, in this game specifically where we use a sword to attack, the mask of the hitbox itself must match the layer of the enemy it is attacking.
 
-This way, when the sword is swung, I will be checking for collision in mask/layer 2.
+This way, when the sword is swung, it will be checking for collision with anything in layer 2 - because the sword hitbox is in mask 2.
 
 Side note: this assumes that your node has a CollisionShape, which is what allows for collision inside Godot in the first place.
