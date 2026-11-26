@@ -65,3 +65,10 @@ based off either one of those, the play_animation function will run either "walk
 "void" is used when a function is not returning anything
 
 "prefix" is used as a placeholder for either walk or idle, which will depend on the velocity either being equal or not equal to Vector2
+
+## Extra notes
+
+# Collision configuration
+In the Godot engine, only collision bodies/objects can collide with each other if they are on the same layer, sort of as a category.
+
+Although, mask can define more specifically *what* a body/object can collide *with*.
