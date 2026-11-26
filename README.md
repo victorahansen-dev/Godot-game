@@ -69,6 +69,10 @@ based off either one of those, the play_animation function will run either "walk
 # Extra notes
 
 ## Collision configuration
-In the Godot engine, only collision bodies/objects can collide with each other if they are on the same layer, sort of as a category.
+In the Godot engine, layers can be used to tell where something is in the physics layers, sort of as a categorization method.
 
-Although, mask can define more specifically *what* a body/object can collide *with*.
+While mask defines specifically which body/object can collide with each other, this being determined by the number each node is placed inside of.
+
+An example of this; if our player is on layer 2, but mask is one. It will collide with everything else that also has mask as one.
+
+Side note: this assumes that your node has a CollisionShape, which is what allows for collision inside Godot in the first place.
