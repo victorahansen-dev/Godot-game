@@ -73,6 +73,10 @@ In the Godot engine, layers can be used to tell where something is in the physic
 
 While mask defines specifically which body/object can collide with each other, this being determined by the number each node is placed inside of.
 
-An example of this; if our player is on layer 2, but mask is one. It will collide with everything else that also has mask as one.
+An example of this; if our player is on layer 2, but mask one. It will collide with everything else that also is in mask one.
+
+Additionally, in this game specifically where we use a sword to attack, the mask of the hitbox itself must match the layer of the enemy it is attacking.
+
+This way, when the sword is swung, I will be checking for collision in mask/layer 2.
 
 Side note: this assumes that your node has a CollisionShape, which is what allows for collision inside Godot in the first place.
