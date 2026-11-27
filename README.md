@@ -80,3 +80,16 @@ Additionally, in this game specifically where we use a sword to attack, the mask
 This way, when the sword is swung, it will be checking for collision with anything in layer 2 - because the sword hitbox is in mask 2.
 
 Side note: this assumes that your node has a CollisionShape, which is what allows for collision inside Godot in the first place.
+
+
+## Differentiating between functions
+
+In GDScript, a leading underscore is a convention, not an access restriction: it often marks a function as internal or not intended to be called from outside the script. 
+
+It also appears on engine callbacks such as _ready() and _process(), which Godot calls automatically at specific points.
+
+Simply put, underscores can be used as a marker/indicator on custom functions (primarily to signify for them to only be used inside the one specific script), they are also used for engine callbacks built into GDScript.
+
+Thus, no underscore generally signifies that the function be used over multiple scripts.
+
+While this isn't necessary, it's useful if you work with others on the same script and/or like to have better flow over your code.
