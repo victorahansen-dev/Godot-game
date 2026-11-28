@@ -138,15 +138,15 @@ Variables and node references
 _ready() runs when the player enters the scene. It saves the hitbox’s initial position in hitbox_offset.
 Movement and animation
 
-_physics_process() runs on physics frames. It checks for an attack input, stops normal movement while attacking, otherwise processes movement and animation, then calls move_and_slide() to move the character.
+- _physics_process() runs on physics frames. It checks for an attack input, stops normal movement while attacking, otherwise processes movement and animation, then calls move_and_slide() to move the character.
 
-process_movement() reads the directional inputs with Input.get_vector(). When there’s input, it sets the player’s velocity and remembers the direction. With no input, it sets velocity to zero.
+- process_movement() reads the directional inputs with Input.get_vector(). When there’s input, it sets the player’s velocity and remembers the direction. With no input, it sets velocity to zero.
 
-process_animation() chooses a walk animation when the player is moving and an idle animation otherwise. Both use last_direction, so the player keeps facing the last direction they moved.
+- process_animation() chooses a walk animation when the player is moving and an idle animation otherwise. Both use last_direction, so the player keeps facing the last direction they moved.
 
-play_animation() chooses an animation based on the direction:
+- play_animation() chooses an animation based on the direction:
 
-Horizontal directions use the right-facing animation, with flip_h mirroring it for left.
+- Horizontal directions use the right-facing animation, with flip_h mirroring it for left.
 Vertical directions use the up or down animation.
 
 ## Attacking
@@ -154,23 +154,25 @@ Vertical directions use the up or down animation.
 attack() marks the player as attacking, enables the hitbox, plays the swing sound, and starts an attack animation in the last movement direction.
 
 When the sprite’s animation finishes, _on_animated_sprite_2d_animation_finished() clears is_attacking, allowing movement and another attack.
-Hitbox and damage
 
-update_hitbox_offset() moves the hitbox based on the player’s facing direction, using the saved starting offset as a reference.
+### Hitbox and damage
 
-When a body enters the hitbox, _on_hitbox_body_entered() checks that an attack is active and that the body’s name starts with "Slime". It then calls take_damage() on that body, passing the player’s strength and position.
+- update_hitbox_offset() moves the hitbox based on the player’s facing direction, using the saved starting offset as a reference.
+
+- When a body enters the hitbox, _on_hitbox_body_entered() checks that an attack is active and that the body’s name starts with "Slime". It then calls take_damage() on that body, passing the player’s strength and position.
 Things to check
 
-Hitbox timing: _physics_process() sets hitbox.monitoring = false at the start of every physics frame. attack() turns it on, but the next physics frame turns it off again. That may leave the hitbox active for only a brief moment. If you want it active for the whole attack, enable it when the attack starts and disable it when the attack animation finishes—or use a dedicated hit frame or animation event.
+- Hitbox timing: _physics_process() sets hitbox.monitoring = false at the start of every physics frame. attack() turns it on, but the next physics frame turns it off again. That may leave the hitbox active for only a brief moment. If you want it active for the whole attack, enable it when the attack starts and disable it when the attack animation finishes—or use a dedicated hit frame or animation event.
 
-Hitbox positioning: update_hitbox_offset() is called when the player moves, but not when they start an attack. If the player attacks while standing still after turning another way, make sure the hitbox is already positioned correctly. You could update it when the facing direction changes or at the start of attack().
+- Hitbox positioning: update_hitbox_offset() is called when the player moves, but not when they start an attack. If the player attacks while standing still after turning another way, make sure the hitbox is already positioned correctly. You could update it when the facing direction changes or at the start of attack().
 
-Diagonal directions: Input.get_vector() can return diagonal directions. match last_direction only handles exact Vector2.LEFT, RIGHT, UP, and DOWN values, so a diagonal may not match any case. If you want four-direction movement and attacks, convert the input to a cardinal direction before storing it.
+- Diagonal directions: Input.get_vector() can return diagonal directions. match last_direction only handles exact Vector2.LEFT, RIGHT, UP, and DOWN values, so a diagonal may not match any case. If you want four-direction movement and attacks, convert the input to a cardinal direction before storing it.
 
-Signal connections and enemy method: The sprite’s animation_finished signal needs to be connected to _on_animated_sprite_2d_animation_finished(). Any body identified as a slime also needs a take_damage(strength, position) method.
+- Signal connections and enemy method: The sprite’s animation_finished signal needs to be connected to _on_animated_sprite_2d_animation_finished(). Any body identified as a slime also needs a take_damage(strength, position) method.
 
-Directional hitbox offsets: The four Vector2 calculations rotate or flip the original offset around the player. Check that the initial offset and the hitbox shape’s dimensions make the attack area land where you expect in each direction.
+- Directional hitbox offsets: The four Vector2 calculations rotate or flip the original offset around the player. Check that the initial offset and the hitbox shape’s dimensions make the attack area land where you expect in each direction.
 
+**Side notes:**
 
 "@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D" is a variable created which gives access to the sprite animations
 
