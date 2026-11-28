@@ -174,13 +174,13 @@ Things to check
 
 **Side notes:**
 
-"@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D" is a variable created which gives access to the sprite animations
+- "@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D" is a variable created which gives access to the sprite animations
 
-in physics_process we call for the process_movement and process_animation function
+- in physics_process we call for the process_movement and process_animation function
 
-process_movement checks the speed of the player and determines if they're either walking or idle
+- process_movement checks the speed of the player and determines if they're either walking or idle
 
-based off either one of those, the play_animation function will run either "walk" or "idle" and then calls the appropriate animation
+- based off either one of those, the play_animation function will run either "walk" or "idle" and then calls the appropriate animation
 
 ---
 
